@@ -1,0 +1,105 @@
+.login, .createAccount {
+    background-color: grey;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-direction: column;
+    text-align: center;
+    gap: 8px;
+    width: 400px;
+    height: 600px;
+    padding: 40px;
+    border-radius: 30px;
+    border: 8px solid #363f4d;
+    min-height: 100px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    gap: 8px;
+    height: auto;
+    margin: 0 auto;
+    
+}
+
+form input {
+    height: 50px;
+    border-radius: 10px;
+    border: 4px solid #4f5a6b;
+    width: 100%;
+    margin: 0;
+    box-sizing: border-box;
+    opacity: .5;
+    font-family: 'Monserrat', sans-serif;
+    font-weight: 400;
+    letter-spacing: 1px;
+    color: #4f5a6b;
+    font-size: 22px;
+    line-height: 1.2;
+    margin-top: 0px;
+    align-self: flex-start;
+    padding-left: 20px;
+}
+
+form button {
+    background-color: rgba(241, 241, 241, 0.5);
+    width: 100%;
+    height: 50px;
+    border-radius: 10px;
+    border: 4px solid #4f5a6b;
+    font-family: 'Monserrat', sans-serif;
+    font-weight: 600;
+    letter-spacing: 1px;
+    color: #4f5a6b;
+    text-transform: uppercase;
+    font-size: 18px;
+    line-height: 1.2;
+    text-align: center;
+    margin: 0;
+}
+body {
+    height: 100vh;
+    background-image: url("background.jpg");
+    background-color: rgba(255, 255, 255, 0.4);
+    background-blend-mode:lighten;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+h1{
+    font-family: 'Monserrat', sans-serif;
+    font-weight: 600;
+    letter-spacing: -2px;
+    color: #363f4d;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+    font-size: 60px;
+    line-height: 1.2;
+    margin-top: 0px;
+    text-decoration: underline;
+
+}
+
+h2{
+    font-family: 'Monserrat', sans-serif;
+    font-weight: 600;
+    letter-spacing: 1px;
+    color: #4f5a6b;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+    font-size: 22px;
+    line-height: 1.2;
+    margin-top: 0px;
+    align-self: flex-start;
+    padding-left: 55px;
+    padding-top: 20px;
+}
+
