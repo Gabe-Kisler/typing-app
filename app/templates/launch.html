@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>QUICK-KEY</title>
+    <meta charset="UTF-8">
+    <script src="{{ url_for('static', filename='javascript/typingScript.js')}}" defer></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/typingStyles.css') }}">
+</head>
+
+<body>
+    <div class="websiteName">
+        <h1>Quick-key</h1>
+    </div>
+    <div class="testSettings">
+        <h2 id="timer">0</h2>
+        <button tabindex="-1" type="button" id="fifteen">15</button>
+        <button tabindex="-1" type="button" id="thirty">30</button>
+        <button tabindex="-1" type="button" id="sixty">60</button>
+        <button tabindex="-1" type="button" id="Easy">easy</button>
+        <button tabindex="-1" type="button" id="Medium">medium</button>
+        <button tabindex="-1" type="button" id="Hard">hard</button>
+        
+    </div>
+    <div class="textField" id="textField">
+        <p id="display-text">loading words...</p>
+    </div>
+</body>
+
+</html>
