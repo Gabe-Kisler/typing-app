@@ -5,6 +5,9 @@ const fifteen = document.getElementById('fifteen');
 const thirty = document.getElementById('thirty');
 const sixty = document.getElementById('sixty');
 
+const container = document.querySelector('.container');
+const testStats = document.getElementById('testStats');
+
 const LEVELS = {
     easy: 'easy',
     medium: 'medium',
@@ -18,13 +21,17 @@ const TIME_OPTIONS = {
 };
 
 const COLORS = {
-    correctKey: '#30472f',
+    correctKey: '#2b5229',
     incorrectKey: '#4a292d',
     defaultColor: '#363f4d'
 };
 
 let difficulty;
 let timeChoice;
+let errors = 0;
+let currentWords = "";
+let typingIndex = 0;
+let count = 15;
 
 [ easy, medium, hard, fifteen, thirty, sixty ].forEach(disableKeyboardActivation);
 
@@ -42,7 +49,6 @@ window.onload = function() {
  * Declares default difficulty and time modes as well as typingIndex
  */
 function setDefaultModes() {
-    let typingIndex = 0;
     difficulty = LEVELS.easy;
     timeChoice = TIME_OPTIONS.fifteen;
 }
@@ -115,6 +121,8 @@ function setTime(timeSelection) {
             setTimer(15);
             break;
     }
+
+    loadWords(difficulty);
 }
 
 /*
@@ -162,10 +170,10 @@ function loadWords (buttonChoice) {
     })
     .then (response => response.json())
     .then (data => {
-        let currentWords = data.wordsString;
-        console.log ("words:", data);
+        currentWords = data.wordsString;
+        refreshTestString();
         const displayText = document.getElementById('display-text');
-        displayText.textContent = data.wordsString;
+        displayText.innerHTML = data.wordsString;
     })
     .catch (error => {
         console.error ('error getting words', error);
@@ -182,7 +190,7 @@ function startTimer (time) {
         clearInterval(timerInterval);
     }
     const timer = document.getElementById('timer');
-    let count = time;
+    count = time;
     timer.textContent = count;
 
     timerInterval = setInterval (function() {
@@ -193,6 +201,7 @@ function startTimer (time) {
         if (count <= 0) {
             clearInterval(timerInterval);
             timerInterval = null;
+            endTest();
         }
     }, 1000)
 }
@@ -216,7 +225,7 @@ function keyPressed(event) {
         startTest();
     }
     else if (event.key === 'Backspace') {
-        handleBackspace();
+        handleBackspace(event.key);
     }
     else {
         handleCharacter(event.key);
@@ -224,10 +233,16 @@ function keyPressed(event) {
 }
 
 function startTest () {
+    resetTest();
+    startTimer(timeChoice);
+}
+
+function resetTest() {
     typingIndex = 0;
+    errors = 0;
     refreshTestString();
     getTextField();
-    startTimer(timeChoice);
+
 }
 /*
  * Handles a character being pressed. Receives a character that was clicked as the parameter.
@@ -242,14 +257,21 @@ function handleCharacter(inputChar) {
     }
     else {
         changeCharacterColor(typingIndex, COLORS.incorrectKey);
+        errors++;
     }
 
     typingIndex++;
     getTextField();
 }
 
-function handleBackspace () {
-    typingIndex--;
+function handleBackspace (input) {
+    if (typingIndex > 0) {
+        typingIndex--;
+    }
+    if (testString[typingIndex].includes(COLORS.incorrectKey)) {
+        errors--;
+    }
+
     removeCharacterColor(typingIndex);
     getTextField();
 }
@@ -280,6 +302,48 @@ function disableKeyboardActivation(button) {
         }
     });
 }
+
+function endTest() {
+    handleWPM();
+    displayResults();
+
+}
+
+function handleWPM () {
+    let testDuration = parseInt(timeChoice);
+    let grossWPM = (typingIndex/5) / (testDuration/60);
+    let netWPM = grossWPM - (errors / (testDuration/60));
+    console.log(netWPM);
+    if (netWPM < 0) {
+        netWPM = 0;
+    }
+    return {grossWPM, netWPM, errors};
+}
+
+function displayResults() {
+    const {grossWPM, netWPM, errors} = handleWPM();
+
+    container.style.display = 'none';
+    testStats.style.display = 'block';
+
+    document.getElementById('wpm-result').textContent = netWPM.toFixed(2);
+    document.getElementById('rawWPM-result').textContent = grossWPM.toFixed(2);
+    document.getElementById('errors-result').textContent = errors;
+
+    document.addEventListener ('keyup', escapeKey);
+
+}
+
+function escapeKey(event) {
+    if (event.key === 'Escape') {
+        resetTest();
+        container.style.display = 'flex';
+        testStats.style.display = 'none';
+        loadWords(difficulty);
+    }
+}
+
+
     
 
 

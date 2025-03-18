@@ -12,18 +12,29 @@
     <div class="websiteName">
         <h1>Quick-key</h1>
     </div>
-    <div class="testSettings">
-        <h2 id="timer">0</h2>
-        <button tabindex="-1" type="button" id="fifteen">15</button>
-        <button tabindex="-1" type="button" id="thirty">30</button>
-        <button tabindex="-1" type="button" id="sixty">60</button>
-        <button tabindex="-1" type="button" id="Easy">easy</button>
-        <button tabindex="-1" type="button" id="Medium">medium</button>
-        <button tabindex="-1" type="button" id="Hard">hard</button>
-        
+    <div class="container">
+        <div class="testSettings">
+            <div class="buttons">
+                <h2 id="timer">0</h2>
+                <button tabindex="-1" type="button" id="fifteen">15</button>
+                <button tabindex="-1" type="button" id="thirty">30</button>
+                <button tabindex="-1" type="button" id="sixty">60</button>
+                <button tabindex="-1" type="button" id="Easy">easy</button>
+                <button tabindex="-1" type="button" id="Medium">medium</button>
+                <button tabindex="-1" type="button" id="Hard">hard</button>
+            </div>
+        </div>
+        <div class="textField" id="textField">
+            <p id="display-text">loading words...</p>
+        </div>
     </div>
-    <div class="textField" id="textField">
-        <p id="display-text">loading words...</p>
+
+    <div class="test-stats" id="testStats" style="display: none;">
+        <h1>results</h1>
+        <p>WPM: <span id="wpm-result"></span></p>
+        <p>Raw WPM: <span id ="rawWPM-result"></span></p>
+        <p>Errors: <span id="errors-result"></span></p>
+        <p id="escapeToExit">press escape to return</p>
     </div>
 </body>
 
