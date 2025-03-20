@@ -304,9 +304,31 @@ function disableKeyboardActivation(button) {
 }
 
 function endTest() {
-    handleWPM();
-    displayResults();
 
+    const {grossWPM, netWPM, errors} = handleWPM();
+    displayResults(grossWPM, netWPM, errors);
+    sendStats(grossWPM, netWPM, errors);
+
+}
+
+function sendStats(grossWPM, netWPM, errors) {
+    const time = timeChoice;
+
+    const test = {grossWPM, netWPM, errors, time, difficulty}
+    fetch ('/test-finished', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(test)
+    })
+    .then(response => response.json())
+    .then(data => {
+        console.log('test result stored', data);
+    })
+    .then(error => {
+        console.log('error storing results', error);
+    });
 }
 
 function handleWPM () {
@@ -320,8 +342,7 @@ function handleWPM () {
     return {grossWPM, netWPM, errors};
 }
 
-function displayResults() {
-    const {grossWPM, netWPM, errors} = handleWPM();
+function displayResults(grossWPM, netWPM, errors) {
 
     container.style.display = 'none';
     testStats.style.display = 'block';

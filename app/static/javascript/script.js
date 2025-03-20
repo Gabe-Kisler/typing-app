@@ -4,10 +4,16 @@ const signupButton = document.getElementById('signupButton');
 const loginDiv = document.getElementById('login');
 const signupDiv = document.getElementById('createAccount');
 
+/*
+ * Runs upon window loading, calls function clickListeners.
+ */
 window.onload = function() {
     clickListeners();
 }
 
+/*
+ * handles click listeners, calls function initializeButtonFunctions upon click.
+ */
 function clickListeners() {
     [signupScreenButton, loginScreenButton, signupButton].forEach( button => {
         button.addEventListener('click', (event) => {
@@ -16,6 +22,10 @@ function clickListeners() {
     });
 }
 
+/*
+ * Receives parameter buttonPressed containing a string representing the button
+ * Switches between button cases. If signup or login are pressed, switches to specified screen. If signup button is pressed, calls function signupUser.
+ */
 function initializeButtonFunctions(buttonPressed) {
     if (buttonPressed === "signupScreen") {
         toggleDisplays('signup');
@@ -28,6 +38,9 @@ function initializeButtonFunctions(buttonPressed) {
     }
 }
 
+/*
+ * receives screen parameter, switches to desired screen.
+ */
 function toggleDisplays(screen) {
     if (screen === 'signup') {
         loginDiv.style.display = 'none';
@@ -42,6 +55,9 @@ function toggleDisplays(screen) {
 
 }
 
+/*
+ * Creates user object from input strings. Sends as json and receives response. If account is created, redirect to login screen.
+ */
 function signupUser(event) {
     event.preventDefault();
 
