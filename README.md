@@ -6,12 +6,12 @@
 1. Clone the repository
    - git clone https://github.com/Gabe-Kisler/typing-app.git
 2. Initialize local environment
-   -python3 -m venv venv
-   -venv/bin/activate
+   - python3 -m venv venv
+   - venv/bin/activate
 3. Install required dependencies
-   -pip install -r requirements.txt
+   - pip install -r requirements.txt
 4. Run the environment
-   -python3 run.py
+   - python3 run.py
 
 ____________________________________________________________________________
 
