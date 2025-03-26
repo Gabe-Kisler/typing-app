@@ -1,7 +1,8 @@
-#Quick-key
-_____________________________________
+# Quick-key
 
-##installation
+==========================================================================
+
+## installation
 1. Clone the repository
    - git clone https://github.com/Gabe-Kisler/typing-app.git
 2. Initialize local environment
@@ -12,9 +13,10 @@ _____________________________________
 4. Run the environment
    -python3 run.py
 
-______________________________________
+____________________________________________________________________________
 
-##technologies
+
+## technologies
 - Frontend
   - HTML
   - CSS
