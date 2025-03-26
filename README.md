@@ -16,8 +16,6 @@ Quick-key is a web app in which users can test and improve their typing skills. 
 4. Run the environment
    - python3 run.py
 
-____________________________________________________________________________
-
 
 ## technologies
 - Frontend
