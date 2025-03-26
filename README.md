@@ -1,2 +1,2 @@
-<ins> #**typing-app**</ins>
+<ins>**typing-app**</ins>
 
