@@ -1,2 +1,3 @@
 venv/
-app/credentials/Credentials.json
+app/credentials/
+app/__pycache__
