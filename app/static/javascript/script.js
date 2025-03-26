@@ -17,7 +17,7 @@ window.onload = function() {
 function clickListeners() {
     [signupScreenButton, loginScreenButton, signupButton].forEach( button => {
         button.addEventListener('click', (event) => {
-            initializeButtonFunctions (event.target.id);
+            initializeButtonFunctions (event.target.id, event);
         });
     });
 }
@@ -26,7 +26,7 @@ function clickListeners() {
  * Receives parameter buttonPressed containing a string representing the button
  * Switches between button cases. If signup or login are pressed, switches to specified screen. If signup button is pressed, calls function signupUser.
  */
-function initializeButtonFunctions(buttonPressed) {
+function initializeButtonFunctions(buttonPressed, event) {
     if (buttonPressed === "signupScreen") {
         toggleDisplays('signup');
     }
@@ -34,7 +34,7 @@ function initializeButtonFunctions(buttonPressed) {
         toggleDisplays('login');
     }
     else if (buttonPressed === "signupButton") {
-        signupUser();
+        signupUser(event);
     }
 }
 
@@ -67,6 +67,8 @@ function signupUser(event) {
     const user = {username, password, email};
 
 
+    console.log ('sending user data:', user);
+
     fetch ('/create-account', {
         method: 'POST',
         headers: { 
@@ -75,14 +77,7 @@ function signupUser(event) {
         body: JSON.stringify(user)
     })
 
-    .then(response => { 
-        if (response.ok) {
-            return response.json();
-        }
-        else {
-            throw new Error ('could not create account');
-        }
-    })
+    .then(response => response.json())
     .then (result => {
         console.log ('Account created:', result);
         window.location.assign('/login');
