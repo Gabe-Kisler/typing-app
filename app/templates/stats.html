@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>quick-key</title>
+    <meta charset="UTF-8">
+    <script src="{{ url_for('static', filename='javascript/stats.js')}}" defer></script>
+    <link rel="stylesheet" href="{{ url_for('static',  filename='css/statStyles.css') }}">
+</head>
+
+<body>
+
+    <header id="header">
+        <div id="username">
+            <h1 id="usernameText"></h1>
+        </div>
+        <div id="header-stats">
+            <h2>total tests</h2>
+            <h3 id="total-tests"></h3>
+        </div>
+        <div id="header-stats">
+            <h2>time typing</h2>
+            <h3 id="time-typing-num"></h3>
+        </div>
+        <div id="header-stats">
+            <h2>best wpm</h2>
+            <h3 id="best-wpm-num"></h3>
+        </div>
+    </header>
+    
+    <div id="main-container">
+        <div id="main-stats-container">
+            <h2>fifteen</h2>
+            <h5>best</h5>
+            <h4 id="fifteen-best"></h4>
+            <h5>average</h5>
+            <h4 id="fifteen-avg"></h4>
+            <h5>tests</h5>
+            <h4 id="fifteen-tests"></h4>
+        </div>    
+        <div id="main-stats-container">
+            <h2>thirty</h2>
+            <h5>best</h5>
+            <h4 id="thirty-best"></h4>
+            <h5>average</h5>
+            <h4 id="thirty-avg"></h4>
+            <h5>tests</h5>
+            <h4 id="thirty-tests"></h4>
+        </div>   
+        <div id="main-stats-container">
+            <h2>sixty</h2>
+            <h5>best</h5>
+            <h4 id="sixty-best"></h4>
+            <h5>average</h5>
+            <h4 id="sixty-avg"></h4>
+            <h5>tests</h5>
+            <h4 id="sixty-tests"></h4>
+        </div>   
+    </div>
+    
+</body>
+  
