@@ -38,22 +38,29 @@ def store_stats (user_id, test_taken, net_wpm, gross_wpm, errors, time, difficul
     return test.id
 
 
-
-
 def test_get_stats (user_id):
     print (get_total_test_taken(user_id))
     print (get_average_gross_wpm(user_id))
     print (get_average_net_wpm(user_id))
     print (get_error_rate(user_id))
 
+def get_total_test_taken (user_id, time):
+    print ("entered get total tests", user_id, time)
+    total_tests = 0
+    tests = db.collection('users').document(user_id).collection('tests').stream()
 
-def get_total_test_taken (user_id):
-    test_ref = db.collection('users').document(user_id).collection('tests')
-    total_tests = len(list(test_ref.stream()))
+    if (time == None):
+        print ("time = 0")
+        total_tests = len(list(tests))
+    elif (time != None):
+        print ("time dne 0")
+        for test in tests:
+            test_doc = test.to_dict()
+            test_time = test_doc.get('time', 0)
+            print (test_time)
+            if int(time) == int(test_time):
+                total_tests += 1
     return total_tests
-
-
-
 
 def get_average_gross_wpm (user_id):
     wpm_list = (db.collection('users').document(user_id).collection('tests').stream())
@@ -141,10 +148,32 @@ def get_most_recent_tests (user_id):
 
 def get_best_test (user_id, time):
     tests = db.collection('users').document(user_id).collection('tests').stream()
-    best = None
     best_wpm = 0
-    count = 0
+
+    if not tests:
+        print ("no tests for user")
+
+    for test in tests:
+        test_doc = test.to_dict()
+        wpm = test_doc.get('gross_wpm', 0)
+        test_time = test_doc.get('time', 0)
+
+
+        if (time == None):
+            if wpm > best_wpm:
+                best_wpm = wpm
+        
+        elif (time == test_time):
+            if wpm > best_wpm:
+                best_wpm = wpm
+
+
+    return best_wpm 
+  
+def get_average_tests (user_id, time):
+    tests = db.collection('users').document(user_id).collection('tests').stream()
     wpm_total = 0
+    count = 0
 
 
     for test in tests:
@@ -153,15 +182,15 @@ def get_best_test (user_id, time):
         test_time = test_doc.get('time', 0)
 
 
-        if (time == test_time):
+        if (time == None):
+            wpm_total += wpm
+            count += 1
+        
+        elif (time == test_time):
+            wpm_total += wpm
+            count += 1
 
-
-            if wpm > best_wpm:
-                best = test_doc
-                best_wpm = wpm
-
-
-    return best        
+    return wpm_total / count if count > 0 else 0
 
 
 def send_user_stats (user_id):
