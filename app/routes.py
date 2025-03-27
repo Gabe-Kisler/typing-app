@@ -1,5 +1,5 @@
 from flask import Blueprint, render_template, request, jsonify, session
-from .services import load_words_from_csv, get_total_test_taken, store_stats, get_best_test, get_average_tests
+from .services import load_words_from_csv, get_total_test_taken, store_stats, get_best_test, get_average_tests, get_total_time_typing
 
 
 routes_bp = Blueprint ('routes_bp', __name__)
@@ -48,7 +48,7 @@ def store_user_stats ():
     time = data.get('time')
     difficulty = data.get('difficulty')
 
-    test_taken = get_total_test_taken(user_id) + 1
+    test_taken = get_total_test_taken(user_id, None) + 1
     test_id = store_stats(user_id, test_taken, net_wpm, gross_wpm, errors, time, difficulty)
     return jsonify ({'succesfully stored test, tes_id:':test_id})
 
@@ -56,6 +56,7 @@ def store_user_stats ():
 def get_user_stats ():
     user_id = session.get('user_id')
     total_tests = get_total_test_taken(user_id, None)
+    typing_time = get_total_time_typing(user_id)
     best_ovr_wpm = get_best_test (user_id, None)
     fifteen_sec_best = get_best_test (user_id, 15)
     fifteen_sec_avg = get_average_tests (user_id, 15)
@@ -67,9 +68,9 @@ def get_user_stats ():
     sixty_sec_avg = get_average_tests (user_id, 60)
     sixty_sec_tests = get_total_test_taken (user_id, 60)
 
-    print (total_tests, fifteen_sec_tests, fifteen_sec_avg, fifteen_sec_best, thirty_sec_best, sixty_sec_best)
     return jsonify ({
         'total_tests': total_tests,
+        'typing_time': typing_time,
         'best_ovr_wpm': best_ovr_wpm,
         'fifteen_sec_best': fifteen_sec_best,
         'fifteen_sec_avg': fifteen_sec_avg,

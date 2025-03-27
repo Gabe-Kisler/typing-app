@@ -34,118 +34,34 @@ def store_stats (user_id, test_taken, net_wpm, gross_wpm, errors, time, difficul
         'difficulty' : difficulty,
         'timestamp': firestore.SERVER_TIMESTAMP
     })
-    test_get_stats(user_id)
     return test.id
 
-
-def test_get_stats (user_id):
-    print (get_total_test_taken(user_id))
-    print (get_average_gross_wpm(user_id))
-    print (get_average_net_wpm(user_id))
-    print (get_error_rate(user_id))
-
 def get_total_test_taken (user_id, time):
-    print ("entered get total tests", user_id, time)
     total_tests = 0
     tests = db.collection('users').document(user_id).collection('tests').stream()
 
     if (time == None):
-        print ("time = 0")
         total_tests = len(list(tests))
     elif (time != None):
-        print ("time dne 0")
         for test in tests:
             test_doc = test.to_dict()
             test_time = test_doc.get('time', 0)
-            print (test_time)
             if int(time) == int(test_time):
                 total_tests += 1
     return total_tests
 
-def get_average_gross_wpm (user_id):
-    wpm_list = (db.collection('users').document(user_id).collection('tests').stream())
+def get_total_time_typing (user_id):
+    tests = db.collection('users').document(user_id).collection('tests').stream()
+    total_time = 0
 
+    for test in tests:
+        test_doc = test.to_dict()
+        time = test_doc.get('time', 0)
+        total_time += int(time)
 
-    wpm_total = 0
-    count = 0
-
-
-    for test in wpm_list:
-        test_wpm = test.to_dict()
-        wpm_total += test_wpm.get('gross_wpm', 0)
-        count+=1
-
-
-    if count > 0:
-        average_gross_wpm = wpm_total / count
-    else:
-        average_gross_wpm = 0
-
-
-    return average_gross_wpm    
-
-
-def get_average_net_wpm (user_id):
-    wpm_list = (db.collection('users').document(user_id).collection('tests').stream())
-
-
-    wpm_total = 0
-    count = 0
-
-
-    for test in wpm_list:
-        test_wpm = test.to_dict()
-        wpm_total += test_wpm.get('net_wpm', 0)
-        count += 1
-
-
-    if count > 0:
-        average_net_wpm = wpm_total / count
-    else:
-        average_net_wpm = 0
-
-
-    return average_net_wpm    
-
-
-def get_error_rate (user_id):
-    error_list = (db.collection('users').document(user_id).collection('tests').stream())
-
-
-    total_errors = 0
-    count = 0
-
-
-    for test in error_list:
-        test_error = test.to_dict()
-        total_errors += test_error.get('errors', 0)
-        count += 1
-
-
-        if total_errors > 0:
-            average_error_per_test = total_errors / count
-        else:
-            average_error_per_test = 0    
-
-
-    return average_error_per_test
-
-
-def get_most_recent_tests (user_id):
-    recent_tests = db.collection('users').document(user_id).collection('tests').limit(3).get()
-    recent_tests_list = [test for test in recent_tests]
-
-
-    if len(recent_tests_list) >= 3:
-        return recent_tests_list[3].to_dict()
-    elif len(recent_tests_list) == 2:
-        return recent_tests_list[2].to_dict()
-    elif len(recent_tests_list) == 1:
-        return recent_tests_list[1].to_dict()
-    else:
-        return None
-
-
+    total_time_mins = round (total_time / 60, 2)
+    return total_time_mins
+    
 def get_best_test (user_id, time):
     tests = db.collection('users').document(user_id).collection('tests').stream()
     best_wpm = 0
@@ -157,14 +73,14 @@ def get_best_test (user_id, time):
         test_doc = test.to_dict()
         wpm = test_doc.get('gross_wpm', 0)
         test_time = test_doc.get('time', 0)
-
+        print (test_time, wpm)
 
         if (time == None):
-            if wpm > best_wpm:
+            if int(wpm) > int(best_wpm):
                 best_wpm = wpm
         
-        elif (time == test_time):
-            if wpm > best_wpm:
+        elif int(time) == int(test_time):
+            if int(wpm) > int(best_wpm):
                 best_wpm = wpm
 
 
@@ -175,22 +91,20 @@ def get_average_tests (user_id, time):
     wpm_total = 0
     count = 0
 
-
     for test in tests:
         test_doc = test.to_dict()
         wpm = test_doc.get('gross_wpm', 0)
         test_time = test_doc.get('time', 0)
 
-
         if (time == None):
             wpm_total += wpm
             count += 1
         
-        elif (time == test_time):
+        elif int(time) == int(test_time):
             wpm_total += wpm
             count += 1
 
-    return wpm_total / count if count > 0 else 0
+    return round(wpm_total / count, 2) if count > 0 else 0
 
 
 def send_user_stats (user_id):
