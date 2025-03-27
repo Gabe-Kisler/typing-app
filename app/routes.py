@@ -12,6 +12,10 @@ def index():
 def launch():
     return render_template('launch.html')
 
+@routes_bp.route('/stats-render')
+def render_stats():
+    return render_template('stats.html')
+
 
 @routes_bp.route ('/get-words', methods=['POST', 'GET'])
 def get_words():

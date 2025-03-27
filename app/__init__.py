@@ -11,8 +11,8 @@ def create_app():
     initialize_app(cred)
 
 
-    from .routes import routes_bp
-    from .auth import auth_bp
+    from app.routes import routes_bp
+    from app.auth import auth_bp
 
 
     app.register_blueprint(routes_bp)

@@ -27,7 +27,7 @@ h1{
     flex-direction: row;
 }
 
-.websiteName button {
+.button {
     padding-left: 1000px;
     font-size: 40px;
     color: #363f4d;

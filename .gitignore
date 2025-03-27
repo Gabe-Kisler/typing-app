@@ -1,3 +1,5 @@
 venv/
 app/credentials/
-app/__pycache__
+app/__pycache__/
+/.vscode
+
