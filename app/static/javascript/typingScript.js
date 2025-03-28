@@ -1,11 +1,11 @@
-const easy = document.getElementById('Easy');
-const medium = document.getElementById('Medium');
-const hard = document.getElementById('Hard');
+const easy = document.getElementById('easy');
+const medium = document.getElementById('medium');
+const hard = document.getElementById('hard');
 const fifteen = document.getElementById('fifteen');
 const thirty = document.getElementById('thirty');
 const sixty = document.getElementById('sixty');
 
-const container = document.querySelector('.container');
+const container = document.getElementById('body-container');
 const testStats = document.getElementById('testStats');
 
 const LEVELS = {
@@ -306,6 +306,7 @@ function disableKeyboardActivation(button) {
 function endTest() {
 
     const {grossWPM, netWPM, errors} = handleWPM();
+    console.log(document.getElementById('testStats'));
     displayResults(grossWPM, netWPM, errors);
     sendStats(grossWPM, netWPM, errors);
 
@@ -343,7 +344,6 @@ function handleWPM () {
 }
 
 function displayResults(grossWPM, netWPM, errors) {
-
     container.style.display = 'none';
     testStats.style.display = 'block';
 

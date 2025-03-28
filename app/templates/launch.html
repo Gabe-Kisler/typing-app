@@ -10,36 +10,45 @@
 </head>
 
 <body>
-    <div class="websiteName">
-        <h1>Quick-key</h1>
-        <a href="{{ url_for('routes_bp.render_stats') }}" class="button">
-            <i class="fas fa-user-circle"></i> 
-        </a>
-
-    </div>
-    <div class="container">
-        <div class="testSettings">
-            <div class="buttons">
+    <div id="body-container">
+        <div id="header">
+            <div id="title">
+                <h1>Quick-key</h1>
+            </div>
+            <div id="user-stats">    
+                <a href="{{ url_for('routes_bp.render_stats') }}" id="stats-button">
+                    <i class="fas fa-user-circle"></i> 
+                </a>
+            </div>    
+        </div>
+        <div id="menu-bar">
+            <div id="timer-container">
                 <h2 id="timer">0</h2>
-                <button tabindex="-1" type="button" id="fifteen">15</button>
-                <button tabindex="-1" type="button" id="thirty">30</button>
-                <button tabindex="-1" type="button" id="sixty">60</button>
-                <button tabindex="-1" type="button" id="Easy">easy</button>
-                <button tabindex="-1" type="button" id="Medium">medium</button>
-                <button tabindex="-1" type="button" id="Hard">hard</button>
+            </div>
+            <div class="button-container">    
+                <button tabindex="-1" type="button" class="settings-button" id="fifteen">15</button>
+                <button tabindex="-1" type="button" class="settings-button" id="thirty">30</button>
+                <button tabindex="-1" type="button" class="settings-button" id="sixty">60</button>
+            </div>
+            <div class="button-container">
+                <button tabindex="-1" type="button" class="settings-button" id="easy">easy</button>
+                <button tabindex="-1" type="button" class="settings-button" id="medium">medium</button>
+                <button tabindex="-1" type="button" class="settings-button" id="hard">hard</button>
             </div>
         </div>
-        <div class="textField" id="textField">
+        <div id="textField">
             <p id="display-text">loading words...</p>
         </div>
     </div>
 
-    <div class="test-stats" id="testStats" style="display: none;">
-        <h1>results</h1>
-        <p>WPM: <span id="wpm-result"></span></p>
-        <p>Raw WPM: <span id ="rawWPM-result"></span></p>
-        <p>Errors: <span id="errors-result"></span></p>
-        <p id="escapeToExit">press escape to return</p>
+    <div id="test-screen-container">
+        <div class="test-stats" id="testStats" style="display: none;">
+            <h1>results</h1>
+            <p id="escapeToExit">press escape to return</p>
+            <p class="stats-info">WPM: <span id="wpm-result"></span></p>
+            <p class="stats-info">Raw WPM: <span id ="rawWPM-result"></span></p>
+            <p class="stats-info">Errors: <span id="errors-result"></span></p>
+        </div>
     </div>
 </body>
 
