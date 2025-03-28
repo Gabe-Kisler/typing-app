@@ -1,11 +1,11 @@
-# Quick-key
+# QUICK-KEY
 
 ==========================================================================
 
-## project overview
-Quick-key is a web app in which users can test and improve their typing skills. With multiple difficulty and time settings as well as quick results and restarts, Quick-key offers a fast paced environment for users to refine their skills and aim for high scores.
+## Overview : 
+Quick-key is an online typing program where users can improve, refine, and store their typing skills. Quick-key allows users to customize test times and difficulties. Users can begin tests, once a test is complete, the user will be displayed their results. You will be able to find a history of all your stats and tests by navigating to the stats screen. 
 
-## installation
+## installation :
 
 ### Windows : 
 1. Clone the repository
