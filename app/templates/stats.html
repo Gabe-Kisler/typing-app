@@ -6,6 +6,7 @@
     <meta charset="UTF-8">
     <script src="{{ url_for('static', filename='javascript/stats.js')}}" defer></script>
     <link rel="stylesheet" href="{{ url_for('static',  filename='css/statStyles.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 
 <body>
@@ -26,11 +27,28 @@
             <h3>best wpm</h3>
             <h4 id="best-wpm-num">0</h4>
         </div>
+        <div id="typing-screen">    
+            <a href="{{ url_for('routes_bp.launch') }}" id="typing-screen-button">
+                <i class="fas fa-keyboard"></i> 
+            </a>
+        </div>
     </header>
     
     <div id="main-container">
         <div class="main-stats-container">
             <h2 class="time-title">fifteen</h2>
+            <select id="time-selecter">
+                <option value="" disabled selected>filter by time</option>
+                <option value="filter-day">day</option>
+                <option value="filter-week">week</option>
+                <option value="filter-month">month</option>
+            </select>  
+            <select id="difficulty-selecter">
+                <option value="" disabled selected>filter by difficulty</option>
+                <option value="filter-easy">easy</option>
+                <option value="filter-medium">medium</option>
+                <option value="filter-hard">hard</option>
+            </select>    
             <h5>best</h5>
             <h4 id="fifteen-best">0</h4>
             <h5>average</h5>
@@ -40,6 +58,18 @@
         </div>    
         <div class="main-stats-container">
             <h2 class="time-title">thirty</h2>
+            <select id="time-selecter">
+                <option value="" disabled selected>filter by time</option>
+                <option value="filter-day">day</option>
+                <option value="filter-week">week</option>
+                <option value="filter-month">month</option>
+            </select>  
+            <select id="difficulty-selecter">
+                <option value="" disabled selected>filter by difficulty</option>
+                <option value="filter-easy">easy</option>
+                <option value="filter-medium">medium</option>
+                <option value="filter-hard">hard</option>
+            </select>    
             <h5>best</h5>
             <h4 id="thirty-best">0</h4>
             <h5>average</h5>
@@ -49,6 +79,18 @@
         </div>   
         <div class="main-stats-container">
             <h2 class="time-title">sixty</h2>
+            <select id="time-selecter">
+                <option value="" disabled selected>filter by time</option>
+                <option value="filter-day">day</option>
+                <option value="filter-week">week</option>
+                <option value="filter-month">month</option>
+            </select>  
+            <select id="difficulty-selecter">
+                <option value="" disabled selected>filter by difficulty</option>
+                <option value="filter-easy">easy</option>
+                <option value="filter-medium">medium</option>
+                <option value="filter-hard">hard</option>
+            </select>    
             <h5>best</h5>
             <h4 id="sixty-best">0</h4>
             <h5>average</h5>
