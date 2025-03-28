@@ -35,17 +35,29 @@ body {
     align-self: flex-start;
     height: 40px;
     gap: 0px;
+    transition-duration: 0.2s;
+    cursor: pointer;
 }
 
 #stats-button {
     font-size: 40px;
     color: #363f4d;
     background: transparent;
-    border: none
+    border: none;
+    transition-duration: 0.2s;
+    cursor: pointer;
 }
 
 .settings-button.active {
-    background-color: #616161;
+    background-color: #7088ac;
+}
+
+.settings-button:not(.active):hover {
+    background-color: #6b6b6b;
+}
+
+#stats-button:hover {
+    color: #7088ac;
 }
 
 
