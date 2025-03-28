@@ -7,26 +7,48 @@ Quick-key is a web app in which users can test and improve their typing skills. 
 
 ## installation
 
-### windows
+### Windows : 
 1. Clone the repository
    ```
     git clone https://github.com/Gabe-Kisler/typing-app.git
    ```
-3. Initialize local environment
+2. Initialize local environment
+   ```
+     python -m venv venv
+   ```
+   ```
+     venv\Scripts\activate
+   ```
+3. Install required dependencies
+   ```
+    pip install -r requirements.txt
+   ```
+4. Run the environment
+   ```
+    python run.py
+   ```
+
+### Unix : 
+1. Clone the repository
+   ```
+    git clone https://github.com/Gabe-Kisler/typing-app.git
+   ```
+2. Initialize local environment
    ```
      python3 -m venv venv
    ```
    ```
-     source venv/Scripts/activate
+     source venv/bin/activate
    ```
-5. Install required dependencies
+3. Install required dependencies
    ```
     pip install -r requirements.txt
    ```
-7. Run the environment
+4. Run the environment
    ```
     python3 run.py
    ```
+
 
 
 ## technologies
