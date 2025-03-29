@@ -3,7 +3,7 @@
 ==========================================================================
 
 ## Overview : 
-Quick-key is an online typing program where users can improve, refine, and store their typing skills. Quick-key allows users to customize test times and difficulties. Users can begin tests, once a test is complete, the user will be displayed their results. You will be able to find a history of all your stats and tests by navigating to the stats screen. 
+Quick-key is an online typing program that helps users improve their typing skills. Users have customization choices of test times and difficulties for more challenging text as they improve. After completing a test, users will be displayed their results such as errors and words per minute. Progress can be tracked in the stats screen where test history is available. 
 
 ## installation :
 
