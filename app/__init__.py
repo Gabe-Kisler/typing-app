@@ -1,13 +1,15 @@
 from flask import Flask
 from firebase_admin import credentials, initialize_app, firestore
-
+import os, json
 
 def create_app():
     app = Flask(__name__)
-    app.secret_key = 'secretKey'
+    app.secret_key = os.getenv("SECRET_KEY", "fallback_secret_key")
+    firebase_credentials = os.getenv("FIREBASE_CREDENTIALS")
 
-
-    cred = credentials.Certificate('app/credentials/Credentials.json')
+    if firebase_credentials:
+        cred = credentials.Certificate(json.loads(firebase_credentials))
+    
     initialize_app(cred)
 
 

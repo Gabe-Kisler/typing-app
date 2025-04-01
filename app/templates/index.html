@@ -32,7 +32,7 @@
     <div class="createAccount" id="createAccount" style="display: none;">
         <h1>quickkey</h1>
         <h2>create account</h2>
-        <form action="/create-account" method="POST">
+        <form id="createAccountForm" method="POST">
             <label for="username"></label>
             <input type="text" id="createUsername" placeholder="username" name="username">
             
@@ -42,7 +42,7 @@
             <label for="password"></label>
             <input type="password" id="createPassword" placeholder="password" name="password">
 
-            <button type="submit" id="signupButton">signup</button>
+            <button type="button" id="signupButton">signup</button>
             <button type="button" id="loginScreen">login</button>
 
         </form>
