@@ -54,6 +54,7 @@ def get_tests (user_id):
         tests.append (test.to_dict())
 
 
+    print (" user tests: ", tests)
     return tests    
 
 
